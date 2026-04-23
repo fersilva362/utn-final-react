@@ -1,17 +1,18 @@
-import useContactHook from "./useContactHook";
+import useContactHook from "../useContactHook";
+import "./MessagePage.css";
 const MessagePage = () => {
   const { contacts, navigate } = useContactHook();
-
+  //Falta formatear la hora
   return (
-    <div>
-      <header>
-        <h1>Message</h1>
+    <div className="messages-container">
+      <header className="messages-header">
+        <h1>Messages</h1>
       </header>
 
-      <main>
-        <section>
-          <p>Recent</p>
-          <div>
+      <main className="messages-content">
+        <section className="recent-section">
+          <p className="recent-title">Recent Contacts</p>
+          <div className="recent-list">
             {contacts.map((contact) => {
               const url =
                 "https://i.pravatar.cc/300?u=" + contact.conversation_id;
@@ -26,7 +27,7 @@ const MessagePage = () => {
           </div>
         </section>
 
-        <section className="">
+        <section className="tiles-section">
           <div className="">
             {contacts.map((conv) => {
               const url = "https://i.pravatar.cc/300?u=" + conv.conversation_id;
@@ -49,24 +50,21 @@ const MessagePage = () => {
 };
 
 const RecentContact = ({ name, url }) => (
-  <div>
-    <img src={url} alt={name} className="" />
-    <span className="">{name}</span>
+  <div className="recent-contact">
+    <img src={url} alt={name} className="recent-avatar" />
+    <span className="tile-name">{name}</span>
   </div>
 );
 
 const MessageTile = ({ url, name, message, time, onClick }) => (
-  <div
-    onClick={onClick}
-    className="flex items-center p-4 hover:bg-gray-700 rounded-2xl cursor-pointer transition-colors"
-  >
-    <img src={url} className="" alt={name} />
-    <div className="">
-      <div className="">
-        <h4 className="">{name}</h4>
-        <span className="">{time}</span>
+  <div onClick={onClick} className="message-tile">
+    <img src={url} className="tile-avatar" alt={name} />
+    <div className="tile-info">
+      <div className="tile-header">
+        <h4 className="tile-name">{name}</h4>
+        <span className="tile-time">{time}</span>
       </div>
-      <p className="">{message || "No messages yet"}</p>
+      <p className="tile-message">{message || "No messages yet"}</p>
     </div>
   </div>
 );

@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
-import ChatPage from "./ChatPage";
-import MessagePage from "./MessagePage";
+
+import MessagePage from "./messagePageScreen/MessagePage";
+import ChatPage from "./chatPageScreen/ChatPage";
 
 function App() {
   return (

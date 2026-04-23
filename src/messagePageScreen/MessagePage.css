@@ -1,0 +1,113 @@
+.messages-container {
+  background-color: #0046d5; /* The blue background behind the white card */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-header {
+  padding: 30px 20px;
+  color: white;
+}
+
+.messages-header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.messages-content {
+  background-color: white;
+  flex: 1;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.recent-section {
+  padding: 0 20px 20px 20px;
+}
+
+.recent-title {
+  color: #7d8491;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.recent-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.recent-list::-webkit-scrollbar {
+  display: none;
+}
+
+.recent-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 60px;
+}
+
+.recent-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #e0e7ff;
+}
+
+/* Message Tiles Section */
+.tiles-section {
+  padding: 10px 20px;
+}
+
+.message-tile {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  cursor: pointer;
+  gap: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tile-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.tile-info {
+  flex: 1;
+}
+
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.tile-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.tile-time {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.tile-message {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
