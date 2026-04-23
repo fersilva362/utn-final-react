@@ -67,37 +67,33 @@ export default function useContactHook() {
         const conversations = contacts.find(
           (msg) => msg.conversation_id === conversation_id,
         ).messages;
-        if (conversations.length != 0) {
-          setMessages([conversations]);
+        if (!conversations) {
+          setErrorMessage("Not found conversations");
+          throw new Error("Not found conversations");
         }
+
+        setMessages(conversations);
       } catch (error) {
         setErrorMessage(error);
       } finally {
         setLoadMessage(false);
       }
-      const conversations = contacts.find(
-        (msg) => msg.conversation_id === conversation_id,
-      ).messages;
-      if (conversations.length != 0) {
-        setMessages(conversations);
-      }
     },
     [contacts],
   );
 
-  console.log(messages);
   const [inputValue, setInputValue] = useState("");
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     setTimeout(() => {
-      setMessages([
-        ...messages,
+      setMessages((prev) => [
+        ...(prev || []),
         {
-          id: "unique-msg-id-0010",
+          id: Date.now().toString(),
           content: inputValue,
           sender_id: userId.toString(),
-          created_at: "2026-01-19T15:50:00.000Z",
+          created_at: new Date().toISOString(),
         },
       ]);
     }, 2000);
