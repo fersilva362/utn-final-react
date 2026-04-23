@@ -5,10 +5,6 @@ const MessagePage = () => {
   //Falta formatear la hora
   return (
     <div className="messages-container">
-      <header className="messages-header">
-        <h1>Messages</h1>
-      </header>
-
       <main className="messages-content">
         <section className="recent-section">
           <p className="recent-title">Recent Contacts</p>
