@@ -1,3 +1,5 @@
+import MessageTile from "../components/MessageTile";
+import RecentContact from "../components/RecentContact";
 import useContactHook from "../useContactHook";
 import "./MessagePage.css";
 const MessagePage = () => {
@@ -34,7 +36,11 @@ const MessagePage = () => {
                   name={conv.participant_name}
                   message={conv.last_message}
                   time={conv.last_message_time}
-                  onClick={() => navigate("/contact/" + conv.conversation_id)}
+                  onClick={() =>
+                    navigate("/contact/" + conv.conversation_id, {
+                      state: { participante: { name: conv.participant_name } },
+                    })
+                  }
                 />
               );
             })}
@@ -44,25 +50,5 @@ const MessagePage = () => {
     </div>
   );
 };
-
-const RecentContact = ({ name, url }) => (
-  <div className="recent-contact">
-    <img src={url} alt={name} className="recent-avatar" />
-    <span className="tile-name">{name}</span>
-  </div>
-);
-
-const MessageTile = ({ url, name, message, time, onClick }) => (
-  <div onClick={onClick} className="message-tile">
-    <img src={url} className="tile-avatar" alt={name} />
-    <div className="tile-info">
-      <div className="tile-header">
-        <h4 className="tile-name">{name}</h4>
-        <span className="tile-time">{time}</span>
-      </div>
-      <p className="tile-message">{message || "No messages yet"}</p>
-    </div>
-  </div>
-);
 
 export default MessagePage;

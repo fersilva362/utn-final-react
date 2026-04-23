@@ -66,7 +66,7 @@ export default function useContactHook() {
 
         const conversations = contacts.find(
           (msg) => msg.conversation_id === conversation_id,
-        );
+        ).messages;
         if (!conversations) {
           setErrorMessage("Not found conversations");
           throw new Error("Not found conversations");

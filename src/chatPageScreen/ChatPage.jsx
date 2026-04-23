@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import useContactHook from "../useContactHook";
 import "./ChatPage.css";
+import SentMessage from "../components/SentMessage";
+import ReceivedMessage from "../components/ReceivedMessage";
 
 export default function ChatPage() {
   const {
@@ -14,12 +16,11 @@ export default function ChatPage() {
     setInputValue,
   } = useContactHook();
   const { conversation_id } = useParams();
+  const { state } = useLocation();
+  console.log(state);
   useEffect(() => {
     loadConversationsById(conversation_id);
   }, [conversation_id, loadConversationsById]);
-
-  const url = "https://i.pravatar.cc/300?u=" + conversation_id;
-  //falta pensar en un scroll view  para muchas conversaciones
 
   return (
     <div className="chat-container">
@@ -28,14 +29,17 @@ export default function ChatPage() {
       {!loadMessage && messages && (
         <>
           <header className="chat-header">
-            <img src={url} alt="profile" />
-            <span>{messages.participant_name}</span>
+            <img
+              src={`https://i.pravatar.cc/300?u=${conversation_id} `}
+              alt="profile"
+            />
+            <span>{state.participante.name}</span>
             <button className="icon-btn" onClick={() => {}}>
               🔍
             </button>
           </header>
           <main className="chat-main">
-            {messages.messages.map((msg, index) => {
+            {messages.map((msg, index) => {
               const isSent = msg.sender_id === userId.toString();
 
               return isSent ? (
@@ -50,7 +54,7 @@ export default function ChatPage() {
             <input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Message"
+              placeholder="Type Message"
             />
             <button onClick={handleSendMessage}>Send</button>
           </footer>
@@ -59,10 +63,3 @@ export default function ChatPage() {
     </div>
   );
 }
-
-const SentMessage = ({ content }) => (
-  <div className="message sent">{content}</div>
-);
-const ReceivedMessage = ({ content }) => (
-  <div className="message received">{content}</div>
-);
