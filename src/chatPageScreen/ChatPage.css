@@ -8,7 +8,7 @@
 
 .chat-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px 20px;
   background-color: #0046d5; /* Deep blue from your screenshot */
   color: white;

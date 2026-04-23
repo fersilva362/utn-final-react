@@ -1,0 +1,72 @@
+.error-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #f0f2f5;
+  padding: 20px;
+  text-align: center;
+  font-family: inherit;
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  background: #ffebee;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.error-page-container h1 {
+  color: #111b21;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: #667781;
+  font-size: 16px;
+  max-width: 400px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.error-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.retry-btn {
+  padding: 12px 24px;
+  background-color: #00a884; /* WhatsApp Green */
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.retry-btn:hover {
+  background-color: #008f72;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  background-color: white;
+  color: #005cc5;
+  border: 1px solid #d1d7db;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: #f8f9fa;
+}

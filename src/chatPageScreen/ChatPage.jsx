@@ -20,6 +20,7 @@ export default function ChatPage() {
 
   const url = "https://i.pravatar.cc/300?u=" + conversation_id;
   //falta pensar en un scroll view  para muchas conversaciones
+
   return (
     <div className="chat-container">
       {loadMessage && <h1 className="loading">Loading</h1>}
@@ -28,17 +29,15 @@ export default function ChatPage() {
         <>
           <header className="chat-header">
             <img src={url} alt="profile" />
-            <span>Chat User</span>
+            <span>{messages.participant_name}</span>
             <button className="icon-btn" onClick={() => {}}>
               🔍
             </button>
           </header>
           <main className="chat-main">
-            {messages.map((msg, index) => {
+            {messages.messages.map((msg, index) => {
               const isSent = msg.sender_id === userId.toString();
-              console.log(userId);
-              console.log(isSent);
-              console.log(msg.sender_id);
+
               return isSent ? (
                 <SentMessage key={index} content={msg.content} />
               ) : (
