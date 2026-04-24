@@ -29,6 +29,7 @@ const MessagePage = () => {
       </div>
       <main className="messages-content">
         <section className="recent-section">
+          {/* Se podria hacer aca un toggle entre resulSearch & contacts para no duplicar code */}
           <p className="recent-title">
             {!resultSearch ? "Recent Contacts" : "Your Search"}
           </p>

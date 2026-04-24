@@ -57,8 +57,11 @@ export default function useContactHook() {
   const [messages, setMessages] = useState(null);
   const [loadMessage, setLoadMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const userId = "96"; //Will come from credentials' user after login
-  //deberia manejar funcion asincrona si simulo hacer fetch al API
+  const [searchInput, setSearchInput] = useState("");
+  const [resultSearch, setResultSearch] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const userId = "96"; //Will come from credentials' user after login.
+  //deberia loadConversationsById ser funcion asincrona si simulo hacer fetch al API
   const loadConversationsById = useCallback(
     (conversation_id) => {
       try {
@@ -75,7 +78,7 @@ export default function useContactHook() {
 
         setMessages(conversations);
       } catch (error) {
-        setErrorMessage(error);
+        setErrorMessage(error.message);
       } finally {
         setLoadMessage(false);
       }
@@ -83,12 +86,11 @@ export default function useContactHook() {
     [contacts],
   );
 
-  const [searchInput, setSearchInput] = useState("");
-  const [resultSearch, setResultSearch] = useState(null);
-
   const groupedByName = useMemo(() => {
     return Object.groupBy(contacts, ({ participant_name }) => participant_name);
   }, [contacts]);
+
+  //Quiero evitar que filtre en tiempo real ( a medida que tipeo) se puede tambien disparar handleSearch by clickin Icon. se puede mejorar para matchera partial.Mejorar using .filter() and using string.includes()
   const handleSearch = (e) => {
     if (e.key !== "Enter") {
       return;
@@ -101,10 +103,7 @@ export default function useContactHook() {
       ]);
     }
   };
-
-  const [inputValue, setInputValue] = useState("");
-
-  //deberia manejar funcion asincrona si simulo mandar datos al API
+  //deberia manejar funcion asincrona si simulo mandar datos al API, envolviendo en Promise el setTimeout y try-catch for error handling
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     setTimeout(() => {
