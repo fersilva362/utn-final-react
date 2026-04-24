@@ -17,7 +17,6 @@ export default function ChatPage() {
   } = useContactHook();
   const { conversation_id } = useParams();
   const { state } = useLocation();
-  console.log(state);
   useEffect(() => {
     loadConversationsById(conversation_id);
   }, [conversation_id, loadConversationsById]);
@@ -25,7 +24,7 @@ export default function ChatPage() {
   return (
     <div className="chat-container">
       {loadMessage && <h1 className="loading">Loading</h1>}
-      {/*  {!loadMessage && !messages && <h1 className="loading">Loading...</h1>} */}
+
       {!loadMessage && messages && (
         <>
           <header className="chat-header">

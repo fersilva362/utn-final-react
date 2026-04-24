@@ -58,6 +58,7 @@ export default function useContactHook() {
   const [loadMessage, setLoadMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const userId = "96"; //Will come from credentials' user after login
+  //deberia manejar funcion asincrona si simulo hacer fetch al API
   const loadConversationsById = useCallback(
     (conversation_id) => {
       try {
@@ -81,10 +82,10 @@ export default function useContactHook() {
     },
     [contacts],
   );
-  console.log(messages);
 
   const [inputValue, setInputValue] = useState("");
 
+  //deberia manejar funcion asincrona si simulo mandar datos al API
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     setTimeout(() => {

@@ -111,3 +111,32 @@
   text-overflow: ellipsis;
   max-width: 180px;
 }
+.search-container {
+  padding: 8px 16px;
+  background-color: white;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 6px 14px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.search-icon {
+  font-size: 14px;
+  color: #667781;
+  user-select: none;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #111b21;
+}
