@@ -1,25 +1,16 @@
-import { useMemo, useState } from "react";
 import MessageTile from "../components/MessageTile";
 import RecentContact from "../components/RecentContact";
 import useContactHook from "../useContactHook";
 import "./MessagePage.css";
 const MessagePage = () => {
-  const { contacts, navigate } = useContactHook();
-  const [searchInput, setSearchInput] = useState("");
-  const [resultSearch, setResultSearch] = useState(null);
-
-  const groupedByName = useMemo(() => {
-    return Object.groupBy(contacts, ({ participant_name }) => participant_name);
-  }, [contacts]);
-  const handleSearch = (e) => {
-    if (e.key !== "Enter") {
-      return;
-    }
-    setResultSearch(null);
-    if (Object.hasOwn(groupedByName, searchInput)) {
-      setResultSearch((prev) => [...(prev || []), groupedByName[searchInput]]);
-    }
-  };
+  const {
+    contacts,
+    navigate,
+    searchInput,
+    setSearchInput,
+    handleSearch,
+    resultSearch,
+  } = useContactHook();
 
   return (
     <div className="messages-container">

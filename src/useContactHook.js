@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 const myContacts = [
   {
@@ -83,6 +83,25 @@ export default function useContactHook() {
     [contacts],
   );
 
+  const [searchInput, setSearchInput] = useState("");
+  const [resultSearch, setResultSearch] = useState(null);
+
+  const groupedByName = useMemo(() => {
+    return Object.groupBy(contacts, ({ participant_name }) => participant_name);
+  }, [contacts]);
+  const handleSearch = (e) => {
+    if (e.key !== "Enter") {
+      return;
+    }
+    setResultSearch(null);
+    if (Object.hasOwn(groupedByName, searchInput)) {
+      setResultSearch((prev) => [
+        ...(prev || []),
+        ...groupedByName[searchInput],
+      ]);
+    }
+  };
+
   const [inputValue, setInputValue] = useState("");
 
   //deberia manejar funcion asincrona si simulo mandar datos al API
@@ -114,5 +133,9 @@ export default function useContactHook() {
     setInputValue,
     loadMessage,
     errorMessage,
+    searchInput,
+    setSearchInput,
+    handleSearch,
+    resultSearch,
   };
 }
