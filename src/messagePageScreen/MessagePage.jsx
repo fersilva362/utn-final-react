@@ -4,7 +4,7 @@ import useContactHook from "../useContactHook";
 import "./MessagePage.css";
 const MessagePage = () => {
   const { contacts, navigate } = useContactHook();
-  //Falta formatear la hora
+
   return (
     <div className="messages-container">
       <main className="messages-content">

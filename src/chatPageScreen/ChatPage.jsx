@@ -25,7 +25,7 @@ export default function ChatPage() {
   return (
     <div className="chat-container">
       {loadMessage && <h1 className="loading">Loading</h1>}
-      {!loadMessage && !messages && <h1 className="loading">Loading...</h1>}
+      {/*  {!loadMessage && !messages && <h1 className="loading">Loading...</h1>} */}
       {!loadMessage && messages && (
         <>
           <header className="chat-header">
