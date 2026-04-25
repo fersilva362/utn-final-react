@@ -2,6 +2,7 @@ import MessageTile from "../components/MessageTile";
 import RecentContact from "../components/RecentContact";
 import useContactHook from "../useContactHook";
 import "./MessagePage.css";
+
 const MessagePage = () => {
   const {
     contacts,
