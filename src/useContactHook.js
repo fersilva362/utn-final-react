@@ -4,7 +4,7 @@ import { ContactContext } from "./context/ContactContext";
 
 export default function useContactHook() {
   const navigate = useNavigate();
-  const { contacts } = useContext(ContactContext);
+  const { contacts, setContacts } = useContext(ContactContext);
 
   const [messages, setMessages] = useState(null);
   const [loadMessage, setLoadMessage] = useState(false);
@@ -26,7 +26,6 @@ export default function useContactHook() {
         );
 
         const conversations = contact_by_conversation.messages;
-        //setUserChat(contact_by_conversation);
 
         if (!conversations) {
           throw new Error("Not found conversations");
@@ -41,10 +40,6 @@ export default function useContactHook() {
     },
     [contacts],
   );
-
-  /*  const groupedByName = useMemo(() => {
-    return Object.groupBy(contacts, ({ participant_name }) => participant_name);
-  }, [contacts]); */
 
   //Si son mas de un usuario ocn mismo nombre usar un reduce con [name] como key
   const filteredByConversation = useMemo(() => {
@@ -61,13 +56,10 @@ export default function useContactHook() {
     if (filteredByConversation.length != 0) {
       setResultSearch((prev) => [...(prev || []), ...filteredByConversation]);
     }
-    /* if (Object.hasOwn(groupedByName, searchInput)) {
-      
-    } */
   };
-  //deberia manejar funcion asincrona si simulo mandar datos al API, envolviendo en Promise el setTimeout y try-catch for error handling. deberia actualizar contacts array instead messages array
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (conversation_id) => {
+    console.log(conversation_id);
     if (!inputValue.trim()) return;
 
     const newMessage = {
@@ -80,18 +72,19 @@ export default function useContactHook() {
     setTimeout(() => {
       setMessages((prev) => [...(prev || []), newMessage]);
     }, 2000);
-    /* setContacts((prev) =>
+
+    setContacts((prev) =>
       prev.map((c) => {
-        c.conversation_id === conversation_id
+        return c.conversation_id === conversation_id
           ? {
               ...c,
               last_message: inputValue,
               last_message_time: new Date().toISOString(),
-              [messages]: [...messages, newMessage],
+              messages: [...messages, newMessage],
             }
           : c;
       }),
-    ); */
+    );
 
     setInputValue("");
   };

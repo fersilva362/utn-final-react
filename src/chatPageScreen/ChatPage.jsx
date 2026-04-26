@@ -56,7 +56,9 @@ export default function ChatPage() {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Type Message"
             />
-            <button onClick={() => handleSendMessage()}>Send</button>
+            <button onClick={() => handleSendMessage(conversation_id)}>
+              Send
+            </button>
           </footer>
         </>
       )}
