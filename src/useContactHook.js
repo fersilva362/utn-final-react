@@ -12,6 +12,7 @@ export default function useContactHook() {
   const [searchInput, setSearchInput] = useState("");
   const [resultSearch, setResultSearch] = useState(null);
   const [inputValue, setInputValue] = useState("");
+
   const userId = "96"; //Will come from credentials' user after login.
 
   const loadConversationsById = useCallback(
@@ -20,9 +21,12 @@ export default function useContactHook() {
         setLoadMessage(true);
         setErrorMessage("");
 
-        const conversations = contacts.find(
+        const contact_by_conversation = contacts.find(
           (msg) => msg.conversation_id === conversation_id,
-        ).messages;
+        );
+
+        const conversations = contact_by_conversation.messages;
+        //setUserChat(contact_by_conversation);
 
         if (!conversations) {
           throw new Error("Not found conversations");
@@ -38,28 +42,34 @@ export default function useContactHook() {
     [contacts],
   );
 
-  //Quiero evitar que filtre en tiempo real ( a medida que tipeo). se puede tambien disparar handleSearch by clickin Icon. se puede mejorar para matchera partial.Mejorar using .filter() and using string.includes()
-
-  const groupedByName = useMemo(() => {
+  /*  const groupedByName = useMemo(() => {
     return Object.groupBy(contacts, ({ participant_name }) => participant_name);
-  }, [contacts]);
+  }, [contacts]); */
+
+  //Si son mas de un usuario ocn mismo nombre usar un reduce con [name] como key
+  const filteredByConversation = useMemo(() => {
+    return contacts.filter(({ participant_name }) =>
+      participant_name.includes(searchInput),
+    );
+  }, [contacts, searchInput]);
 
   const handleSearch = (e) => {
     if (e.key !== "Enter") {
       return;
     }
     setResultSearch(null);
-    if (Object.hasOwn(groupedByName, searchInput)) {
-      setResultSearch((prev) => [
-        ...(prev || []),
-        ...groupedByName[searchInput],
-      ]);
+    if (filteredByConversation.length != 0) {
+      setResultSearch((prev) => [...(prev || []), ...filteredByConversation]);
     }
+    /* if (Object.hasOwn(groupedByName, searchInput)) {
+      
+    } */
   };
   //deberia manejar funcion asincrona si simulo mandar datos al API, envolviendo en Promise el setTimeout y try-catch for error handling. deberia actualizar contacts array instead messages array
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
+
     const newMessage = {
       id: Date.now().toString(),
       content: inputValue,
@@ -70,6 +80,18 @@ export default function useContactHook() {
     setTimeout(() => {
       setMessages((prev) => [...(prev || []), newMessage]);
     }, 2000);
+    /* setContacts((prev) =>
+      prev.map((c) => {
+        c.conversation_id === conversation_id
+          ? {
+              ...c,
+              last_message: inputValue,
+              last_message_time: new Date().toISOString(),
+              [messages]: [...messages, newMessage],
+            }
+          : c;
+      }),
+    ); */
 
     setInputValue("");
   };

@@ -17,6 +17,7 @@ export default function ChatPage() {
   } = useContactHook();
   const { conversation_id } = useParams();
   const { state } = useLocation();
+  const participant_name = state?.participante.name || "no mame";
   useEffect(() => {
     loadConversationsById(conversation_id);
   }, [conversation_id, loadConversationsById]);
@@ -32,7 +33,7 @@ export default function ChatPage() {
               src={`https://i.pravatar.cc/300?u=${conversation_id} `}
               alt="profile"
             />
-            <span>{state.participante.name}</span>
+            <span>{participant_name}</span>
             <button className="icon-btn" onClick={() => {}}>
               🔍
             </button>
@@ -55,7 +56,7 @@ export default function ChatPage() {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Type Message"
             />
-            <button onClick={handleSendMessage}>Send</button>
+            <button onClick={() => handleSendMessage()}>Send</button>
           </footer>
         </>
       )}
