@@ -77,6 +77,15 @@ const MessagePage = () => {
           </div>
         </section>
       </main>
+      <footer className="sidebar-footer">
+        <button
+          className="add-contact-btn"
+          onClick={() => navigate("/add")}
+          title="Add new contact"
+        >
+          👤+
+        </button>
+      </footer>
     </div>
   );
 };
