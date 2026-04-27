@@ -15,62 +15,7 @@ export default function FormNewUser() {
     loading,
     myMouseEvent,
   } = useNewUserForm();
-  /* const initial_value = { Email: "", Username: "", error: false };
-  const { loadUser } = useContactHook();
-  const { setContacts } = useContext(ContactContext);
 
-  const [formValue, setFormValue] = useState(initial_value);
-  const [loading, setLoading] = useState(false);
-  const [_, setMyError] = useState(null);
-
-  const navigate = useNavigate();
-  const [myMouseEvent, setMyMouseEvent] = useState(false);
-  const changeButtonColor = () => {
-    setMyMouseEvent(() => !myMouseEvent);
-  };
-  const [myFocusEvent, setMyFocusEvent] = useState({
-    Email: false,
-    Username: false,
-  });
-  const changeInputColor = (e) => {
-    const eventName = e.target.name;
-    setMyFocusEvent((prev) => ({ ...prev, [eventName]: !prev[eventName] }));
-  };
-
-  const handleSubmit = async (e, Username, Email) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      setMyError(null);
-
-      await loadUser(Username, Email, setContacts);
-      navigate("/");
-    } catch (error) {
-      setMyError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleChange = (e) => {
-    const eventName = e.target.name;
-    const eventValue = e.target.value;
-
-    if (eventName === "Username" && eventValue.length < 3) {
-      setFormValue((prev) => ({
-        ...prev,
-        error: true,
-      }));
-
-      return;
-    }
-
-    setFormValue((prev) => ({
-      ...prev,
-      [eventName]: eventValue,
-      error: false,
-    }));
-  }; */
   return (
     <div>
       <div className="container">

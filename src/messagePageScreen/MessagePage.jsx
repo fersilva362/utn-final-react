@@ -1,6 +1,6 @@
 import MessageTile from "../components/MessageTile";
 import RecentContact from "../components/RecentContact";
-import useContactHook from "../useContactHook";
+import useContactHook from "../hooks/useContactHook";
 import "./MessagePage.css";
 
 const MessagePage = () => {
@@ -29,14 +29,17 @@ const MessagePage = () => {
         </div>
       </div>
       <main className="messages-content">
-        <section className="recent-section">
-          {/* Se podria hacer aca un toggle entre resulSearch & contacts para no duplicar code */}
-          <p className="recent-title">
-            {!resultSearch ? "Recent Contacts" : "Your Search"}
-          </p>
-          <div className="recent-list">
-            {!resultSearch
-              ? contacts.map((contact) => {
+        {resultSearch && (
+          <section className="recent-section">
+            {/* Se podria hacer aca un toggle entre resulSearch & contacts para no duplicar code */}
+            <p className="recent-title"> Your Search </p>
+            <div className="recent-list">
+              {!resultSearch ? undefined : resultSearch.length == 0 ? (
+                <div className="search-error">
+                  ⚠️ No results found. Please try a different keyword.
+                </div>
+              ) : (
+                resultSearch.map((contact) => {
                   const url =
                     "https://i.pravatar.cc/300?u=" + contact.conversation_id;
                   return (
@@ -47,19 +50,10 @@ const MessagePage = () => {
                     />
                   );
                 })
-              : resultSearch.map((contact) => {
-                  const url =
-                    "https://i.pravatar.cc/300?u=" + contact.conversation_id;
-                  return (
-                    <RecentContact
-                      url={url}
-                      key={contact.conversation_id}
-                      name={contact.participant_name}
-                    />
-                  );
-                })}
-          </div>
-        </section>
+              )}
+            </div>
+          </section>
+        )}
 
         <section className="tiles-section">
           <div className="">

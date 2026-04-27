@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import useContactHook from "../useContactHook";
+import useContactHook from "../hooks/useContactHook";
 import { ContactContext } from "../context/ContactContext";
 
 const useNewUserForm = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, useParams } from "react-router";
-import useContactHook from "../useContactHook";
+import useContactHook from "../hooks/useContactHook";
 import "./ChatPage.css";
 import SentMessage from "../components/SentMessage";
 import ReceivedMessage from "../components/ReceivedMessage";

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
-import { ContactContext } from "./context/ContactContext";
+import { ContactContext } from "../context/ContactContext";
 
 export default function useContactHook() {
   const navigate = useNavigate();
@@ -49,17 +49,17 @@ export default function useContactHook() {
   }, [contacts, searchInput]);
 
   const handleSearch = (e) => {
-    if (e.key !== "Enter") {
+    if (e.key !== "Enter" || !searchInput.trim()) {
+      setResultSearch(null);
       return;
     }
-    setResultSearch(null);
+    setResultSearch([]);
     if (filteredByConversation.length != 0) {
       setResultSearch((prev) => [...(prev || []), ...filteredByConversation]);
     }
   };
 
   const handleSendMessage = (conversation_id) => {
-    console.log(conversation_id);
     if (!inputValue.trim()) return;
 
     const newMessage = {
@@ -80,7 +80,7 @@ export default function useContactHook() {
               ...c,
               last_message: inputValue,
               last_message_time: new Date().toISOString(),
-              messages: [...messages, newMessage],
+              messages: [...messages],
             }
           : c;
       }),

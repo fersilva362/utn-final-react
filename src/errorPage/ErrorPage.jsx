@@ -1,5 +1,5 @@
 import React from "react";
-import useContactHook from "../useContactHook";
+import useContactHook from "../hooks/useContactHook";
 
 export default function ErrorPage() {
   const { navigate } = useContactHook();
