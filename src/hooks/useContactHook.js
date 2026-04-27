@@ -1,7 +1,7 @@
 import { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { ContactContext } from "../context/ContactContext";
-
+import { msg } from "../data/msgOtherUser";
 export default function useContactHook() {
   const navigate = useNavigate();
   const { contacts, setContacts } = useContext(ContactContext);
@@ -41,6 +41,26 @@ export default function useContactHook() {
     [contacts],
   );
 
+  const receiveMessageOtherUser = (msgReceived) => {
+    setTimeout(() => {
+      setMessages((prev) => [...(prev || []), msgReceived.message]);
+      setContacts((prev) =>
+        prev.map((c) => {
+          return c.conversation_id === msgReceived.conversation_id
+            ? {
+                ...c,
+                last_message: msgReceived.message.content,
+                last_message_time: new Date().toISOString(),
+                messages: [...c.messages, msgReceived.message],
+              }
+            : c;
+        }),
+      );
+    }, 2000);
+
+    //
+  };
+
   //Si son mas de un usuario ocn mismo nombre usar un reduce con [name] como key
   const filteredByConversation = useMemo(() => {
     return contacts.filter(({ participant_name }) =>
@@ -69,26 +89,24 @@ export default function useContactHook() {
       created_at: new Date().toISOString(),
     };
 
-    setTimeout(() => {
-      setMessages((prev) => [...(prev || []), newMessage]);
-    }, 2000);
-
     setContacts((prev) =>
       prev.map((c) => {
         return c.conversation_id === conversation_id
           ? {
               ...c,
-              last_message: inputValue,
+              //last_message: inputValue,
               last_message_time: new Date().toISOString(),
-              messages: [...messages],
+              messages: [...messages, newMessage],
             }
           : c;
       }),
     );
-
+    setMessages((prev) => [...(prev || []), newMessage]);
+    receiveMessageOtherUser(msg);
     setInputValue("");
   };
 
+  console.log(messages);
   async function loadUser(Username, Email, Fn) {
     try {
       const newContact = {
