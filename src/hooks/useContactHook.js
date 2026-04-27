@@ -41,7 +41,8 @@ export default function useContactHook() {
     [contacts],
   );
 
-  const receiveMessageOtherUser = (msgReceived) => {
+  const receiveMessageOtherUser = (msgReceived, conversation_id) => {
+    msgReceived = { ...msgReceived, conversation_id };
     setTimeout(() => {
       setMessages((prev) => [...(prev || []), msgReceived.message]);
       setContacts((prev) =>
@@ -102,7 +103,7 @@ export default function useContactHook() {
       }),
     );
     setMessages((prev) => [...(prev || []), newMessage]);
-    receiveMessageOtherUser(msg);
+    receiveMessageOtherUser(msg, conversation_id);
     setInputValue("");
   };
 
