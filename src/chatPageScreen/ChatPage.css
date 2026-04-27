@@ -93,3 +93,29 @@
   cursor: pointer;
   font-weight: bold;
 }
+@media (max-width: 768px) {
+  .chat-header {
+    padding: 10px;
+  }
+
+  .message {
+    max-width: 85%;
+  }
+
+  .chat-footer {
+    padding: 10px;
+  }
+
+  .chat-footer button {
+    padding: 10px 15px;
+  }
+}
+.back-arrow {
+  background: none;
+  border: none;
+  color: white;
+  filter: brightness(0) invert(1);
+  font-size: 1.5rem;
+  padding-right: 10px;
+  cursor: pointer;
+}

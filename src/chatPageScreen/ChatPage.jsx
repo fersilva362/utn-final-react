@@ -7,6 +7,7 @@ import ReceivedMessage from "../components/ReceivedMessage";
 
 export default function ChatPage() {
   const {
+    navigate,
     messages,
     loadConversationsById,
     loadMessage,
@@ -34,8 +35,9 @@ export default function ChatPage() {
               alt="profile"
             />
             <span>{participant_name}</span>
-            <button className="icon-btn" onClick={() => {}}>
-              🔍
+
+            <button className="back-arrow" onClick={() => navigate("/")}>
+              🔙
             </button>
           </header>
           <main className="chat-main">

@@ -1,12 +1,15 @@
 import MessagePage from "../messagePageScreen/MessagePage";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import "./MyLayout.css";
 import ContactContextProvider from "../context/ContactContextProvider";
 
 export default function MyLayout() {
+  const location = useLocation();
+  const isChatting =
+    location.pathname.includes("contact") || location.pathname.includes("add");
   return (
     <ContactContextProvider>
-      <div className="app-container">
+      <div className={`app-container ${isChatting ? "is-chatting" : ""}`}>
         <aside className="sidebar">
           <div className="sidebar-header">
             <h1>Chats</h1>

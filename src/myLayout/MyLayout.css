@@ -43,3 +43,29 @@
   background-color: white;
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    display: var(--sidebar-display, flex);
+  }
+
+  .chat-panel {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10;
+
+    display: var(--chat-display, none);
+  }
+
+  .app-container.is-chatting {
+    --sidebar-display: none;
+    --chat-display: flex;
+  }
+}
