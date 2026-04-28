@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link /*  useNavigate */ } from "react-router";
 import useContactHook from "../hooks/useContactHook";
 import { ContactContext } from "../context/ContactContext";
 
@@ -16,7 +16,7 @@ const useNewUserForm = () => {
     Email: false,
     Username: false,
   });
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [myMouseEvent, setMyMouseEvent] = useState(false);
 
   const changeButtonColor = () => {
@@ -35,7 +35,7 @@ const useNewUserForm = () => {
       setMyError(null);
 
       await loadUser(Username, Email, setContacts);
-      navigate("/");
+      //navigate("/");
     } catch (error) {
       setMyError(error);
     } finally {
@@ -53,6 +53,7 @@ const useNewUserForm = () => {
       [name]: value,
       error: isInvalid,
     }));
+    console.log(formValue);
   };
 
   return {

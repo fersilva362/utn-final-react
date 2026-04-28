@@ -107,12 +107,12 @@ export default function useContactHook() {
     setInputValue("");
   };
 
-  console.log(messages);
   async function loadUser(Username, Email, Fn) {
     try {
+      const conversation_id =
+        "8b5e6814-f6be-4868-9a3f-51f75b90fb75" + new Date().toISOString;
       const newContact = {
-        conversation_id:
-          "8b5e6814-f6be-4868-9a3f-51f75b90fb75" + new Date().toISOString,
+        conversation_id: conversation_id,
         participant_name: Username,
         email: Email,
         last_message: "No messages yet",
@@ -120,6 +120,9 @@ export default function useContactHook() {
         messages: [],
       };
       Fn((prev) => [...prev, newContact]);
+      navigate(`/contact/${conversation_id}`, {
+        state: { participante: { name: Username } },
+      });
     } catch (error) {
       setErrorMessage(error.message);
     }
