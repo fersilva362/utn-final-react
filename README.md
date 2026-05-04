@@ -1,6 +1,6 @@
 # Chat Clone Project - UTN.BA 🚀
 
-Este proyecto es el **Trabajo Final Integrador** para el curso de **Desarrollo en React JS** del Centro de e-Learning UTN BA .  El objetivo principal es demostrar el dominio de componentes, estados (hooks) y propiedades en React, construyendo un clon de una aplicación de mensajería funcional y responsive[cite: 7, 10].
+Este proyecto es el **Trabajo Final Integrador** para el curso de **Desarrollo en React JS** del Centro de e-Learning UTN BA .  El objetivo principal es demostrar el dominio de componentes, estados (hooks) y propiedades en React, construyendo un clon de una aplicación de mensajería funcional y responsive.
 
 ##  Objetivo de la Aplicación
  Desarrollar una interfaz de chat que permita gestionar múltiples conversaciones de forma independiente, aplicar estilos con CSS nativo y manejar la lógica de estados de React para simular una interacción real .
@@ -52,7 +52,7 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 * `/src/styles`: Archivos `.css` para el diseño visual y responsive.
 
 ##  Despliegue
-La aplicación se encuentra disponible en vivo en:  
+La aplicación se encuentra disponible en:  
  **[utn-final-react.vercel.app](https://utn-final-react.vercel.app/)** 
 
 
