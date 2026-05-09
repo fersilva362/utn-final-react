@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import { ContactContext } from "../context/ContactContext";
 import useNewUserForm from "../hooks/useNewUserForm";
+import "./FormComponent.css";
 
 export default function FormNewUser() {
   const {
@@ -17,18 +18,25 @@ export default function FormNewUser() {
   } = useNewUserForm();
 
   return (
-    <div>
-      <div className="container">
-        <div className="header-form-container">
-          <h2>Add new contact! 👤</h2>
+    <div className="form-page-wrapper">
+      <div className="form-card">
+        <div className="profile-preview">
+          <div className="avatar-placeholder">👤</div>
+          <header className="header-form-container">
+            <h2>Add New Contact</h2>
+          </header>
         </div>
+
         <div className="form-container">
           <form
             onSubmit={(e) =>
               handleSubmit(e, formValue.Username, formValue.Email)
             }
           >
-            <div>
+            <div className="input-wrapper">
+              <label className="input-label" htmlFor="Email">
+                Email
+              </label>
               <input
                 className={
                   !myFocusEvent.Email
@@ -51,7 +59,10 @@ export default function FormNewUser() {
               />
             </div>
 
-            <div>
+            <div className="input-wrapper">
+              <label className="input-label" htmlFor="Username">
+                Username
+              </label>
               <input
                 id="Username"
                 name="Username"
@@ -79,17 +90,14 @@ export default function FormNewUser() {
             </button>
           </form>
         </div>
-      </div>
-
-      <div>
-        <h3>{formValue.error && "Check the lenght of your username"}</h3>
-        <h3>
-          🚶‍♂️‍➡️
-          <span>
-            {" "}
-            <Link to={"/"}>Back to Chats</Link>
-          </span>
-        </h3>
+        <footer className="form-footer">
+          {formValue.error && (
+            <p className="error-message">Username is too short</p>
+          )}
+          <Link to="/" className="back-link">
+            Back to Chats
+          </Link>
+        </footer>
       </div>
     </div>
   );

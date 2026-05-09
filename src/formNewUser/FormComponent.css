@@ -1,119 +1,130 @@
-.container {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Full screen centering */
+.form-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f5f9;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.header-form-container {
-  background-color: transparent;
-  color: #0046d5;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.form-container {
+.form-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px; /* Limits width on desktop */
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
 }
-.input-container {
-  margin-bottom: 1%;
+
+/* Profile Section (Matching the Image) */
+.profile-preview {
   display: flex;
   align-items: center;
-  border: 2px solid hsl(153, 16%, 64%);
-  border-radius: 10px;
-  padding: 8px 15px;
-  transition: border-color 0.3s ease;
-  width: stretch;
+  gap: 16px;
+  margin-bottom: 8px;
 }
-.input-container-active {
-  margin-bottom: 1%;
+
+.avatar-placeholder {
+  width: 64px;
+  height: 64px;
+  background-color: #e2e8f0;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  border: 2px solid #306ee9;
-  border-radius: 10px;
-  padding: 8px 15px;
-  transition: border-color 0.3s ease;
-  width: stretch;
-  outline: none;
-}
-.login-btn {
-  background-color: #81b29a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
-  width: stretch;
+  justify-content: center;
+  font-size: 30px;
+  color: #64748b;
 }
 
-.login-btn-active {
-  background-color: #306ee9;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  border-width: 2px;
-  padding: 10px;
-  cursor: pointer;
-  width: stretch;
-}
-
-h3 {
-  color: #d32f2f;
-  background: #ffebee;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  margin-top: 15px;
-}
-h4 {
-  color: gray;
-  text-align: center;
-  font: 0.75em sans-serif;
-}
-
-span {
-  color: #369bd6;
-}
+/* Typography */
 .header-form-container h2 {
-  font-size: 1.5rem;
-  font-family: sans-serif;
+  color: #1e293b;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
 }
+
+.input-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Modern Inputs */
 .input-container,
 .input-container-active {
-  margin-bottom: 15px;
-  padding: 12px 15px;
   width: 100%;
   box-sizing: border-box;
-  font-size: 1rem;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background-color: #f8fafc;
+  font-size: 0.95rem;
+  color: #334155;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
+
+.input-container-active {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Primary Button */
 .login-btn,
 .login-btn-active {
-  margin-top: 10px;
-  padding: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
   width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
 }
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
-  }
 
-  .input-container,
-  .input-container-active {
-    width: 100%;
-    font-size: 16px;
-  }
+.login-btn {
+  background-color: #6366f1;
+  color: white;
+}
 
-  .login-btn,
-  .login-btn-active {
-    width: 100%;
-    padding: 15px;
-  }
+.login-btn-active {
+  background-color: #4f46e5;
+  transform: scale(0.98);
+}
+
+/* Footer & Error */
+.form-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.back-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.error-message {
+  color: #ef4444;
+  background: #fef2f2;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 10px;
+  border: 1px solid #fee2e2;
 }
