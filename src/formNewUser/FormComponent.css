@@ -1,14 +1,17 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header-form-container {
-  background-color: #0133cb;
-  color: white;
+  background-color: transparent;
+  color: #0046d5;
   text-align: center;
-  font: 0.5em sans-serif;
+  margin-bottom: 20px;
 }
 
 .form-container {
@@ -59,9 +62,12 @@
 }
 
 h3 {
-  color: red;
-  text-align: center;
-  font: 0.75em sans-serif;
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-top: 15px;
 }
 h4 {
   color: gray;
@@ -71,6 +77,28 @@ h4 {
 
 span {
   color: #369bd6;
+}
+.header-form-container h2 {
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+.input-container,
+.input-container-active {
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.login-btn,
+.login-btn-active {
+  margin-top: 10px;
+  padding: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .container {
